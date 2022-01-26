@@ -22,7 +22,9 @@ def get_data(filters):
                 op.opportunity_owner_cf, op.to_discuss, op.contact_person, op.transaction_date, op.modified_by,
                 op.modified, date(op.contact_date) contact_date, 
                 COALESCE(pr.stage, cons.stage) sales_stage, 
-                COALESCE(pr.requirement, cons.requirement) requirement, 
+                COALESCE(pr.requirement, cons.requirement) requirement,
+                COALESCE(pr.location, cons.location) location,
+                COALESCE(pr.expected closing date, cons.expected closing date) expected closing date,
                 comm.content latest_comment, comp.competitor competitiors, op.opportunity_amount, op.won_amount_cf,
                 op.lost_amount_cf
             from 
@@ -98,6 +100,17 @@ def get_columns(filters):
             "label": _("Requirement"),
             "fieldname": "requirement",
             "width": 200,
+        },
+        {
+            "label": _("Location"),
+            "fieldname": "location",
+            "width": 200,
+        },
+        {
+            "label": _("Expected Closing Date"),
+            "fieldname": "expected closing date",
+            "fieldtype": "Date",
+            "width": 110,
         },
         {
             "label": _("Next Contact Date"),
